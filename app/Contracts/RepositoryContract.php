@@ -18,10 +18,10 @@ interface RepositoryContract
     public function paginate(int $perPage);
 
     /**
-     * @param array $attribute
+     * @param array $attributes
      * @return mixed
      */
-    public function store(array $attribute);
+    public function store(array $attributes);
 
     /**
      * @param int $id
