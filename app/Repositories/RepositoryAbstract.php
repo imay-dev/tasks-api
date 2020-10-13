@@ -5,6 +5,10 @@ namespace App\Repositories;
 
 use App\Contracts\RepositoryContract;
 
+/**
+ * Class RepositoryAbstract
+ * @package App\Repositories
+ */
 class RepositoryAbstract implements RepositoryContract
 {
 
@@ -12,6 +16,7 @@ class RepositoryAbstract implements RepositoryContract
      * @var
      */
     protected $entity;
+
 
     /**
      * @return mixed

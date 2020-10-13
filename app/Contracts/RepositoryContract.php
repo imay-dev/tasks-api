@@ -3,6 +3,10 @@
 namespace App\Contracts;
 
 
+/**
+ * Interface RepositoryContract
+ * @package App\Contracts
+ */
 interface RepositoryContract
 {
 
