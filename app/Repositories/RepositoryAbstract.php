@@ -3,7 +3,8 @@
 namespace App\Repositories;
 
 
-use App\Contracts\RepositoryContract;
+use Illuminate\Support\Arr;
+use App\Contracts\{RepositoryContract, CriteriaContract};;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Mockery\Exception;
 
@@ -11,7 +12,7 @@ use Mockery\Exception;
  * Class RepositoryAbstract
  * @package App\Repositories
  */
-class RepositoryAbstract implements RepositoryContract
+class RepositoryAbstract implements RepositoryContract, CriteriaContract
 {
 
     /**
@@ -43,6 +44,24 @@ class RepositoryAbstract implements RepositoryContract
 
 
     /**
+     * @param mixed ...$criteria
+     *
+     * @return $this|mixed
+     */
+    public function withCriteria(...$criteria)
+    {
+        $criteria = Arr::flatten($criteria);
+
+        foreach ($criteria as $criterion) {
+            $this->entity = $criterion->apply($this->entity);
+        }
+
+        return $this;
+    }
+
+
+
+    /**
      * @return mixed
      */
     public function all()
@@ -52,6 +71,7 @@ class RepositoryAbstract implements RepositoryContract
 
     /**
      * @param int $perPage
+     *
      * @return mixed
      */
     public function paginate(int $perPage)
@@ -61,6 +81,7 @@ class RepositoryAbstract implements RepositoryContract
 
     /**
      * @param array $attributes
+     *
      * @return mixed
      */
     public function store(array $attributes)
@@ -70,6 +91,7 @@ class RepositoryAbstract implements RepositoryContract
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function show(int $id)
@@ -80,6 +102,7 @@ class RepositoryAbstract implements RepositoryContract
     /**
      * @param array $attributes
      * @param $id
+     *
      * @return mixed
      */
     public function update(array $attributes, $id)
@@ -89,6 +112,7 @@ class RepositoryAbstract implements RepositoryContract
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function destroy(int $id)
