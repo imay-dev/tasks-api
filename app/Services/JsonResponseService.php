@@ -33,7 +33,7 @@ class JsonResponseService
      */
     public function fail($resource = [], $code = Response::HTTP_UNPROCESSABLE_ENTITY)
     {
-        return $this->putAdditionalMeta($resource, 'fail')
+        return $this->putAdditionalMeta($resource, 'failed')
             ->response()
             ->setStatusCode($code);
     }
