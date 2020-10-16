@@ -86,7 +86,7 @@ class RepositoryAbstract implements RepositoryContract, CriteriaContract
      */
     public function store(array $attributes)
     {
-        return $this->entity->store($attributes);
+        return $this->entity->create($attributes);
     }
 
     /**
@@ -117,7 +117,7 @@ class RepositoryAbstract implements RepositoryContract, CriteriaContract
      */
     public function destroy(int $id)
     {
-        return $this->entity->delete($id);
+        return $this->show($id)->delete($id);
     }
 
 }

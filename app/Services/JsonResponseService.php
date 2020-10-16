@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Mockery\Exception;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class JsonResponseService
      * @param array $resource
      * @param int $code
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function success($resource = [], $code = Response::HTTP_OK)
     {
@@ -29,7 +30,7 @@ class JsonResponseService
      * @param array $resource
      * @param int $code
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function fail($resource = [], $code = Response::HTTP_UNPROCESSABLE_ENTITY)
     {
@@ -39,29 +40,15 @@ class JsonResponseService
     }
 
     /**
-     * @param array $resource
-     * @param int $code
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function noContent($resource = [], $code = Response::HTTP_NO_CONTENT)
-    {
-        return $this->putAdditionalMeta($resource, 'success')
-            ->response()
-            ->setStatusCode($code);
-    }
-
-
-    /**
      * @param $resource
      * @param $status
      *
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return JsonResource
      */
     private function putAdditionalMeta($resource, $status)
     {
-        $meta   = [
-            'status'         => $status,
+        $meta = [
+            'status' => $status,
             'execution_time' => number_format(microtime(true) - LARAVEL_START, 4),
         ];
         $merged = array_merge($resource->additional ?? [], $meta);
