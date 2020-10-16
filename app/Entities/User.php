@@ -5,10 +5,16 @@ namespace App\Entities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, HasRoles, Notifiable;
+
+    /**
+     * @var string
+     */
+    protected $guard_name = 'api';
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +52,12 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 
 }

@@ -5,18 +5,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\MainController;
 
-use App\Http\Requests\Auth\ForgotPassword;
-use App\Http\Requests\Auth\Login;
-use App\Http\Requests\Auth\Register;
-use App\Http\Requests\Auth\ResetPassword;
-
+use App\Http\Requests\Auth\{ForgotPassword, Login, Register, ResetPassword};
 use App\Http\Resources\Auth\User;
-
 use App\Services\Auth\AuthService;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
 
 /**
  * Class AuthController

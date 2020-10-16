@@ -2,12 +2,9 @@
 
 namespace App\Repositories\Eloquent;
 
-
 use App\Repositories\RepositoryAbstract;
 use App\Contracts\UserContract;
-
 use App\Entities\User;
-
 
 /**
  * Class UserRepository
@@ -15,7 +12,6 @@ use App\Entities\User;
  */
 class UserRepository extends RepositoryAbstract implements UserContract
 {
-
     /**
      * @return string
      */
@@ -23,5 +19,4 @@ class UserRepository extends RepositoryAbstract implements UserContract
     {
         return User::class;
     }
-
 }

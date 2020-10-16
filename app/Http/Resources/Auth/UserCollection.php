@@ -5,7 +5,6 @@ namespace App\Http\Resources\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-
 /**
  * Class UserCollection
  * @package App\Http\Resources\Auth
